@@ -318,35 +318,14 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: 
-                linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%),
-                url('../images/Hero/Extension_Building_1.jpg') center/cover no-repeat;
+            background: url('../images/Hero/Extension_Building_1.jpg') center/cover no-repeat;
         }
 
         /* Silver star-field dots */
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle, rgba(212, 175, 55, 0.18) 1px, transparent 1px),
-                radial-gradient(circle, rgba(191, 167, 122, 0.12) 1px, transparent 1px);
-            background-size: 60px 60px, 35px 35px;
-            background-position: 0 0, 30px 30px;
-            opacity: 0.4;
-        }
+
 
         /* Vertical silver line */
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            top: 10%;
-            right: 12%;
-            width: 1px;
-            height: 55%;
-            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-            opacity: 0.2;
-        }
+
 
         .hero-content {
             position: relative;
@@ -394,7 +373,7 @@
         .hero-desc {
             font-size: 0.85rem;
             line-height: 2;
-            color: #ffffff;
+            color: var(--black);
             max-width: 440px;
             margin-bottom: 3rem;
             letter-spacing: 0.03em;
@@ -463,22 +442,22 @@
             font-size: 0.55rem;
             letter-spacing: 0.35em;
             text-transform: uppercase;
-            color: var(--cream-muted);
+            color: var(--black);
         }
 
         .scroll-hint::after {
             content: '';
             width: 1px;
             height: 48px;
-            background: linear-gradient(to bottom, var(--silver), transparent);
+            background: linear-gradient(to bottom, var(--black), transparent);
             animation: scrollPulse 2s infinite;
         }
 
         /* ===== INTRO STRIP ===== */
         .intro-strip {
-            background: linear-gradient(90deg, var(--navy-mid), var(--navy-light), var(--navy-mid));
-            border-top: 1px solid rgba(168, 184, 204, 0.15);
-            border-bottom: 1px solid rgba(168, 184, 204, 0.15);
+            background: var(--beige);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding: 1.8rem 5rem;
             display: flex;
             align-items: center;
@@ -491,7 +470,7 @@
             font-family: var(--serif);
             font-size: 1rem;
             font-style: italic;
-            color: var(--silver-light);
+            color: var(--black);
             letter-spacing: 0.04em;
         }
 
