@@ -13,8 +13,14 @@
             --beige-muted: rgba(249, 246, 242, 0.7);
             --brown: #bfa77a;
             --white: #ffffff;
+            --black: #000000;
+            --text-main: #1a1a1a;
             --serif: 'Playfair Display', serif;
             --sans: 'DM Sans', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--black);
         }
 
         html {
@@ -23,9 +29,9 @@
 
         body {
             background: var(--beige);
-            color: var(--brown);
+            color: #000000;
             font-family: var(--sans);
-            font-weight: 300;
+            font-weight: 400;
             overflow-x: hidden;
         }
 
@@ -86,7 +92,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--brown);
+            color: #ffffff;
             font-size: 0.67rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -388,7 +394,7 @@
         .hero-desc {
             font-size: 0.85rem;
             line-height: 2;
-            color: var(--brown);
+            color: #ffffff;
             max-width: 440px;
             margin-bottom: 3rem;
             letter-spacing: 0.03em;
@@ -602,14 +608,14 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: var(--navy);
+            background: var(--white);
         }
 
         .section-label {
             font-size: 0.56rem;
             letter-spacing: 0.48em;
             text-transform: uppercase;
-            color: var(--silver);
+            color: var(--brown);
             margin-bottom: 1.6rem;
             display: flex;
             align-items: center;
@@ -731,7 +737,7 @@
         }
 
         .amenity-card {
-            background: var(--navy);
+            background: var(--white);
             padding: 2.5rem 2rem;
             text-align: center;
             transition: background 0.35s;
@@ -783,13 +789,13 @@
             font-size: 0.92rem;
             font-weight: 400;
             letter-spacing: 0.06em;
-            color: var(--silver-light);
+            color: var(--black);
             margin-bottom: 0.5rem;
         }
 
         .amenity-card p {
             font-size: 0.68rem;
-            color: var(--cream-muted);
+            color: #444444;
             letter-spacing: 0.03em;
             line-height: 1.8;
         }
@@ -797,7 +803,7 @@
         /* ===== ROOMS ===== */
         .rooms {
             padding: 8rem 5rem;
-            background: var(--navy);
+            background: var(--beige);
         }
 
         .rooms-header {
@@ -977,7 +983,7 @@
         }
 
         .event-item {
-            background: var(--navy);
+            background: var(--white);
             padding: 1.8rem 2.2rem;
             display: flex;
             align-items: center;
@@ -1004,7 +1010,7 @@
             font-family: var(--serif);
             font-size: 2rem;
             font-weight: 400;
-            color: var(--silver-light);
+            color: var(--black);
             line-height: 1;
         }
 
@@ -1012,7 +1018,7 @@
             font-size: 0.56rem;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--cream-muted);
+            color: #555555;
         }
 
         .event-info h4 {
@@ -1024,7 +1030,7 @@
 
         .event-info p {
             font-size: 0.7rem;
-            color: var(--cream-muted);
+            color: #666666;
             line-height: 1.6;
         }
 
@@ -1111,7 +1117,8 @@
 
         /* ===== FOOTER ===== */
         footer {
-            background: #030810;
+            background: var(--beige);
+            color: var(--black);
             padding: 5rem;
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr 1fr;
@@ -1128,12 +1135,12 @@
             height: 45px;
             width: auto;
             object-fit: contain;
-            opacity: 0.9;
+            opacity: 1;
         }
 
         .footer-desc {
             font-size: 0.73rem;
-            color: var(--cream-muted);
+            color: #333333;
             line-height: 2;
             margin-bottom: 1.5rem;
         }
@@ -1145,8 +1152,8 @@
         }
 
         .footer-contact a {
-            font-size: 0.7rem;
-            color: var(--cream-muted);
+            display: block;
+            color: var(--black);
             text-decoration: none;
             letter-spacing: 0.04em;
             transition: color 0.3s;
@@ -1160,7 +1167,7 @@
             font-size: 0.56rem;
             letter-spacing: 0.32em;
             text-transform: uppercase;
-            color: var(--silver);
+            color: var(--black);
             margin-bottom: 1.4rem;
             opacity: 0.8;
         }
@@ -1173,9 +1180,8 @@
         }
 
         .footer-links a {
-            font-size: 0.71rem;
-            color: var(--cream-muted);
             text-decoration: none;
+            color: #444444;
             letter-spacing: 0.04em;
             transition: color 0.3s;
         }
@@ -1185,9 +1191,9 @@
         }
 
         .footer-bottom {
-            background: #020609;
+            background: var(--beige);
             padding: 1.5rem 5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1197,7 +1203,7 @@
 
         .footer-bottom p {
             font-size: 0.6rem;
-            color: var(--cream-muted);
+            color: var(--black);
             letter-spacing: 0.12em;
         }
 
