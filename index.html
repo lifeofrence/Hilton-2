@@ -46,9 +46,15 @@
                         <div class="form-group">
                             <label for="roomtype">Room Type</label>
                             <select id="roomtype" name="roomtype">
-                                <option value="standard">Standard Room</option>
-                                <option value="executive">Executive Room</option>
-                                <option value="presidential">Presidential Suite</option>
+                                <option value="studio">Studio Room — ₦30,000</option>
+                                <option value="standard">Standard Room — ₦70,000</option>
+                                <option value="deluxe">Deluxe Room — ₦80,000</option>
+                                <option value="premium">Premium Room — ₦90,000</option>
+                                <option value="mini">Mini Suite — ₦100,000</option>
+                                <option value="royal">Royal Suite — ₦150,000</option>
+                                <option value="royal-classic">Royal Classic Suite — ₦200,000</option>
+                                <option value="executive">Executive Apartment — ₦200,000</option>
+                                <option value="presidential">Presidential Apartment — ₦300,000</option>
                             </select>
                         </div>
                     </div>
@@ -491,12 +497,12 @@
             const params = new URLSearchParams(window.location.search);
             const reserve = params.get('reserve');
             if (reserve) {
-                if (reserve === 'true') openReservationModal();
-                else if (reserve === 'presidential') openReservationModal('presidential');
-                else if (reserve === 'executive') openReservationModal('executive');
-                else if (reserve === 'standard') openReservationModal('standard');
-                // map other types as needed
-                else openReservationModal();
+                const validTypes = ['presidential', 'executive', 'royal-classic', 'royal', 'mini', 'premium', 'deluxe', 'standard', 'studio'];
+                if (validTypes.includes(reserve)) {
+                    openReservationModal(reserve);
+                } else {
+                    openReservationModal();
+                }
             }
         });
     </script>
