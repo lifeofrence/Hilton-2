@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Chiben Leisure Hotels</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- RESERVATION MODAL -->
+    <div class="modal-backdrop" id="reservationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Reserve Your <em>Stay</em></h3>
+                <button class="modal-close" onclick="closeReservationModal()" aria-label="Close">✕</button>
+            </div>
+            <div class="modal-body" id="modalFormBody">
+                <form id="reservationForm" onsubmit="submitReservation(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkin">Check-In Date</label>
+                            <input type="date" id="checkin" name="checkin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout">Check-Out Date</label>
+                            <input type="date" id="checkout" name="checkout" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guests">Guests</label>
+                            <select id="guests" name="guests">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5+">5+ Guests</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="roomtype">Room Type</label>
+                            <select id="roomtype" name="roomtype">
+                                <option value="standard">Standard Room</option>
+                                <option value="executive">Executive Room</option>
+                                <option value="presidential">Presidential Suite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+234 000 000 0000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="requests">Special Requests <span
+                                style="opacity:0.5;font-size:0.9em">(optional)</span></label>
+                        <textarea id="requests" name="requests"
+                            placeholder="Any special requests or preferences…"></textarea>
+                    </div>
+                    <button type="submit" class="modal-submit">Confirm Reservation</button>
+                    <p class="modal-note">Our reservations team will contact you within 2 hours to confirm your
+                        booking.<br>Or call us directly: <a href="tel:+2349015333488"
+                            style="color:var(--silver-light)">+234 901 533 3488</a></p>
+                </form>
+            </div>
+            <div class="modal-success" id="modalSuccess">
+                <div class="modal-success-icon">✦</div>
+                <h4>Reservation Received</h4>
+                <p>Thank you! Our team will reach out within 2 hours to confirm your stay at Chiben Leisure Hotels.<br><br>We look forward to welcoming you.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL-SCREEN OVERLAY MENU -->
+    <div class="overlay-menu" id="overlayMenu" aria-hidden="true">
+        <ul class="overlay-nav">
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="#amenities" onclick="closeMenu()">Amenities</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="#events" onclick="closeMenu()">Events</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+        <div class="overlay-footer">
+            <a href="tel:+2349015333488">+234 901 533 3488</a>
+            <a href="mailto:info@chibenleisurehotels.com">info@chibenleisurehotels.com</a>
+            <a href="#" class="overlay-cta" onclick="closeMenu(); openReservationModal();">Reserve a Room</a>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">
+            <img src="images/Logo/Logo.png" alt="Chiben Leisure Hotels">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#" class="nav-cta" onclick="event.preventDefault(); openReservationModal();">Reserve a Room</a>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <!-- <div class="hero-eyebrow">Awka, Anambra State · Nigeria</div>
+            <h1>Welcome to <em>Chiben Leisure</em><br>Hotels Awka</h1> -->
+            <p class="hero-desc">Discover a world of comfort, elegance, and unforgettable hospitality in the heart of
+                Anambra State. Experience luxury redefined for business and leisure travelers alike.</p>
+            <div class="hero-actions">
+                <a href="#" class="btn-primary" onclick="event.preventDefault(); openReservationModal();">Reserve Your
+                    Stay</a>
+                <a href="rooms.html" class="btn-ghost">Explore Rooms</a>
+            </div>
+        </div>
+        <div class="scroll-hint">Scroll</div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <div class="intro-strip">
+        <p>"Comfort engineered for your every need."</p>
+        <div class="stats">
+            <div class="stat"><strong>52</strong><span>Rooms & Suites</span></div>
+            <div class="stat"><strong>3</strong><span>Mega Halls</span></div>
+            <div class="stat"><strong>24/7</strong><span>Concierge</span></div>
+            <div class="stat"><strong>∞</strong><span>Memories</span></div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-visual">
+            <div class="about-visual-inner"></div>
+            <div class="about-visual-badge">Est.<br>Awka<br>Nigeria</div>
+        </div>
+        <div class="about-text">
+            <div class="section-label">Our Story</div>
+            <h2>A New Standard<br>of <em>Nigerian</em> Luxury</h2>
+            <p>Chiben Leisure Hotels Limited stands as Anambra State's finest hospitality destination — a
+                commercial, eco-friendly and post-modern building sheathed in aplitic stone and glass, featuring capsule
+                elevators that rise through a landmark of refined architecture.</p>
+            <p>Situated at No. 41 Regina Caeli Road, off the Enugu-Onitsha Expressway in Awka, we cater to both the
+                discerning business traveler and those seeking pure leisure in equal measure.</p>
+            <div class="location-tag">No. 41 Regina Caeli Road, off Enugu-Onitsha Expressway, Awka</div>
+        </div>
+    </section>
+
+    <div class="ornament">◆ &nbsp; ◇ &nbsp; ◆</div>
+
+    <!-- AMENITIES -->
+    <section class="amenities" id="amenities">
+        <div class="amenities-header reveal">
+            <div class="section-label">World-Class Facilities</div>
+            <h2>Every <em>Comfort</em> Imagined</h2>
+        </div>
+        <div class="amenities-grid">
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/g7.jpg" alt="Gym"></div>
+                <h3>24-Hour Gym</h3>
+                <p>Fully equipped fitness centre with dedicated professional instructors.</p>
+            </div>
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/g5.jpg" alt="Pool"></div>
+                <h3>Luxury Pool</h3>
+                <p>An expansive swimming pool designed for relaxation and recreation.</p>
+            </div>
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/27.jpg" alt="Spa"></div>
+                <h3>Spa & Wellness</h3>
+                <p>Rejuvenating spa treatments and a full beauty salon on-site.</p>
+            </div>
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/VIP_Bar_2.jpg" alt="Lounge"></div>
+                <h3>VIP Lounge</h3>
+                <p>Exclusive lounge with Gym Bar, Snooker Bar and Bush Bar.</p>
+            </div>
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/37.jpg" alt="Greenery"></div>
+                <h3>Greenery Sit-Out</h3>
+                <p>Lush outdoor garden spaces for tranquility and al fresco moments.</p>
+            </div>
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/kitchen5.JPG" alt="Kitchen"></div>
+                <h3>Fully Equipped Kitchen</h3>
+                <p>State-of-the-art culinary facilities for a refined home-away-from-home experience.</p>
+            </div>
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/g17.jpg" alt="Mega Halls"></div>
+                <h3>3 Mega Halls</h3>
+                <p>Grand conferencing and banqueting halls for events of any scale.</p>
+            </div>
+            <div class="amenity-card reveal">
+                <div class="amenity-icon"><img src="images/Gallery/26.jpg" alt="Saloon"></div>
+                <h3>Barbing Saloon</h3>
+                <p>Professional grooming services for the modern gentleman and lady.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOMS -->
+    <section class="rooms" id="rooms">
+        <div class="rooms-header reveal">
+            <div>
+                <div class="section-label">Accommodations</div>
+                <h2>Rooms Crafted<br>for <em>Refined Rest</em></h2>
+            </div>
+            <a href="rooms.html" class="btn-ghost" style="color:var(--cream-muted)">View All Rooms</a>
+        </div>
+        <div class="rooms-grid">
+            <div class="room-card reveal">
+                <img src="images/PresidentialApartment/Pr4.jpg" class="room-card-img" alt="Presidential Suite">
+                <div class="room-card-number">01</div>
+                <div class="room-card-content">
+                    <div class="room-type">Signature</div>
+                    <h3>Presidential Suite</h3>
+                    <p>The pinnacle of our offering — a sweeping suite with panoramic views and bespoke furnishings.</p>
+                    <a href="#" class="room-card-link"
+                        onclick="event.preventDefault(); openReservationModal('presidential');">Book Now →</a>
+                </div>
+            </div>
+            <div class="room-card reveal">
+                <img src="images/Deluxe/De15.jpg" class="room-card-img" alt="Executive Room">
+                <div class="room-card-number">02</div>
+                <div class="room-card-content">
+                    <div class="room-type">Deluxe</div>
+                    <h3>Executive Room</h3>
+                    <p>Thoughtfully designed for the business traveler who refuses compromise.</p>
+                    <a href="#" class="room-card-link"
+                        onclick="event.preventDefault(); openReservationModal('executive');">Book Now →</a>
+                </div>
+            </div>
+            <div class="room-card reveal">
+                <img src="images/Standard/Std12.jpg" class="room-card-img" alt="Standard Room">
+                <div class="room-card-number">03</div>
+                <div class="room-card-content">
+                    <div class="room-type">Classic</div>
+                    <h3>Standard Room</h3>
+                    <p>Every essential comfort, delivered with the warmth of genuine hospitality.</p>
+                    <a href="#" class="room-card-link"
+                        onclick="event.preventDefault(); openReservationModal('standard');">Book Now →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="events" id="events">
+        <div class="events-text reveal">
+            <div class="section-label">What's On</div>
+            <h2>Upcoming <em>Events</em><br>& Celebrations</h2>
+            <p>From vibrant cultural nights to grand seasonal festivities, Chiben Leisure is where Awka comes together
+                to celebrate life.</p>
+            <a href="#" class="btn-primary">View All Events</a>
+        </div>
+        <div class="events-list reveal">
+            <a class="event-item" href="#">
+                <div class="event-date"><strong>28</strong><span>Mar</span></div>
+                <div class="event-info">
+                    <h4>African Night</h4>
+                    <p>Embrace your culture and satisfy your taste buds with an evening of heritage, music, and cuisine.
+                    </p>
+                </div>
+                <span class="event-arrow">→</span>
+            </a>
+            <a class="event-item" href="#">
+                <div class="event-date"><strong>20</strong><span>Apr</span></div>
+                <div class="event-info">
+                    <h4>Chiben Easter Fiesta</h4>
+                    <p>A grand Easter celebration featuring live entertainment, family dining, and seasonal specials.
+                    </p>
+                </div>
+                <span class="event-arrow">→</span>
+            </a>
+            <a class="event-item" href="#">
+                <div class="event-date"><strong>TBA</strong><span>&nbsp;</span></div>
+                <div class="event-info">
+                    <h4>Corporate Conferencing</h4>
+                    <p>Reserve our world-class Mega Halls for your next corporate event or banquet.</p>
+                </div>
+                <span class="event-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <!-- <section class="cta-section" id="contact">
+        <div class="section-label reveal" style="justify-content:center">Begin Your Stay</div>
+        <h2 class="reveal">Ready to <em>Experience</em><br>the Difference?</h2>
+        <p class="reveal">Call us or reserve your room online. Our team is always ready<br>to ensure your stay is truly
+            unforgettable.</p>
+        <div class="cta-buttons reveal">
+            <a href="tel:+2349015333488" class="btn-primary">+234 901 533 3488</a>
+            <a href="#" class="btn-ghost" style="color:var(--cream)"
+                onclick="event.preventDefault(); openReservationModal();">Reserve Online</a>
+        </div>
+    </section> -->
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <span class="footer-logo">
+                <img src="images/Logo/Logo.png" alt="Chiben Leisure Hotels">
+            </span>
+            <p class="footer-desc">Serving world-class hospitality across Anambra State, Nigeria. Where business meets
+                leisure in a boutique setting unlike any other.</p>
+            <div class="footer-contact">
+                <a href="tel:+2349015333488">+234 901 533 3488</a>
+                <a href="tel:+2349138242110">+234 913 824 2110</a>
+                <a href="mailto:info@chibenleisurehotels.com">info@chibenleisurehotels.com</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul class="footer-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Accommodations</a></li>
+                <li><a href="#">Conferencing & Banqueting</a></li>
+                <li><a href="#">Leisure</a></li>
+                <li><a href="#">Eat & Drink</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Discover</h4>
+            <ul class="footer-links">
+                <li><a href="#">Upcoming Events</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Virtual Tour</a></li>
+                <li><a href="#">Chiben Loyalty</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <ul class="footer-links">
+                <li><a href="#">No. 41 Regina Caeli Road</a></li>
+                <li><a href="#">Off Enugu-Onitsha Expressway</a></li>
+                <li><a href="#">Awka, Anambra State</a></li>
+                <li><a href="#">Nigeria</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <p>© 2025 Chiben Leisure Hotels Limited. All Rights Reserved.</p>
+        <p>AWKA · NIGERIA</p>
+    </div>
+
+    <script>
+        // Full-screen overlay menu
+        let menuOpen = false;
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            const overlay = document.getElementById('overlayMenu');
+            const btn = document.getElementById('hamburger');
+            overlay.classList.toggle('open', menuOpen);
+            overlay.setAttribute('aria-hidden', !menuOpen);
+            btn.classList.toggle('open', menuOpen);
+            document.body.style.overflow = menuOpen ? 'hidden' : '';
+        }
+        function closeMenu() {
+            menuOpen = false;
+            document.getElementById('overlayMenu').classList.remove('open');
+            document.getElementById('overlayMenu').setAttribute('aria-hidden', 'true');
+            document.getElementById('hamburger').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMenu(); });
+
+        // Nav scroll
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Staggered amenity cards
+        document.querySelectorAll('.amenities-grid .amenity-card').forEach((el, i) => {
+            el.style.transitionDelay = `${i * 0.07}s`;
+        });
+
+        // Set default date values (today and tomorrow)
+        (function setDefaultDates() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const fmt = d => d.toISOString().split('T')[0];
+            const ci = document.getElementById('checkin');
+            const co = document.getElementById('checkout');
+            if (ci) { ci.min = fmt(today); ci.value = fmt(today); }
+            if (co) { co.min = fmt(tomorrow); co.value = fmt(tomorrow); }
+            if (ci) ci.addEventListener('change', () => {
+                const next = new Date(ci.value);
+                next.setDate(next.getDate() + 1);
+                co.min = fmt(next);
+                if (co.value && new Date(co.value) <= new Date(ci.value)) co.value = fmt(next);
+            });
+        })();
+
+        // Reservation modal
+        function openReservationModal(roomType) {
+            const modal = document.getElementById('reservationModal');
+            if (roomType) {
+                const sel = document.getElementById('roomtype');
+                if (sel) sel.value = roomType;
+            }
+            // Reset success state
+            document.getElementById('modalFormBody').style.display = '';
+            document.getElementById('modalSuccess').classList.remove('show');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            // Focus first input
+            setTimeout(() => {
+                const first = modal.querySelector('input, select');
+                if (first) first.focus();
+            }, 350);
+        }
+
+        function closeReservationModal() {
+            const modal = document.getElementById('reservationModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on backdrop click
+        document.getElementById('reservationModal').addEventListener('click', function (e) {
+            if (e.target === this) closeReservationModal();
+        });
+
+        // Close modal on Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && document.getElementById('reservationModal').classList.contains('open')) {
+                closeReservationModal();
+            }
+        });
+
+        function submitReservation(e) {
+            e.preventDefault();
+            const form = document.getElementById('reservationForm');
+            const btn = form.querySelector('.modal-submit');
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
+            // Simulate a brief processing delay then show success
+            setTimeout(() => {
+                document.getElementById('modalFormBody').style.display = 'none';
+                document.getElementById('modalSuccess').classList.add('show');
+                form.reset();
+                btn.textContent = 'Confirm Reservation';
+                btn.disabled = false;
+                // Reset dates
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const fmt = d => d.toISOString().split('T')[0];
+                document.getElementById('checkin').value = fmt(today);
+                document.getElementById('checkout').value = fmt(tomorrow);
+            }, 1200);
+        }
+
+        // Handle reservation from URL parameter
+        window.addEventListener('load', () => {
+            const params = new URLSearchParams(window.location.search);
+            const reserve = params.get('reserve');
+            if (reserve) {
+                if (reserve === 'true') openReservationModal();
+                else if (reserve === 'presidential') openReservationModal('presidential');
+                else if (reserve === 'executive') openReservationModal('executive');
+                else if (reserve === 'standard') openReservationModal('standard');
+                // map other types as needed
+                else openReservationModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

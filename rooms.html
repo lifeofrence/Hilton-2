@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Rooms & Rates | Chiben Leisure Hotels</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            padding: 12rem 5rem 6rem;
+            background: var(--navy-deep);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+        }
+
+        .page-header h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            color: var(--silver);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rooms-page-grid {
+            padding: 6rem 5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 3rem;
+            background: var(--beige);
+        }
+
+        .room-detail-card {
+            background: var(--white);
+            border: 1px solid rgba(191, 167, 122, 0.15);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .room-detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .room-detail-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(191, 167, 122, 0.1);
+        }
+
+        .room-detail-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-detail-content .room-type {
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .room-detail-content h2 {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--navy-deep);
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .room-price {
+            font-size: 1.4rem;
+            font-family: var(--sans);
+            color: var(--navy-deep);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+
+        .room-price span {
+            font-size: 0.8rem;
+            color: var(--brown);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .room-price-value {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .room-detail-btn {
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            padding: 1.2rem;
+            background: var(--navy-deep);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .room-detail-btn:hover {
+            background: var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .rooms-page-grid {
+                padding: 4rem 2rem;
+                grid-template-columns: 1fr;
+            }
+            .page-header {
+                padding: 10rem 2rem 5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav id="mainNav" class="scrolled">
+        <a href="index.html" class="nav-logo">
+            <img src="images/Logo/Logo.png" alt="Chiben Leisure Hotels">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#amenities">Amenities</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#" class="nav-cta" onclick="event.preventDefault(); window.location.href='index.html?reserve=true'">Reserve a Room</a>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Our Accommodations</h1>
+        <p>Refined Comfort & Timeless Elegance</p>
+    </header>
+
+    <main class="rooms-page-grid">
+        <!-- PRESIDENTIAL APARTMENT -->
+        <article class="room-detail-card reveal">
+            <img src="images/PresidentialApartment/Pr4.jpg" class="room-detail-img" alt="Presidential Apartment">
+            <div class="room-detail-content">
+                <div class="room-type">Signature Suite</div>
+                <h2>Presidential Apartment</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦300,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=presidential'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- EXECUTIVE APARTMENT -->
+        <article class="room-detail-card reveal">
+            <img src="images/Executive Apartment/4a.jpg" class="room-detail-img" alt="Executive Apartment">
+            <div class="room-detail-content">
+                <div class="room-type">Luxury Suite</div>
+                <h2>Executive Apartment</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦200,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=executive'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- ROYAL CLASSIC SUITE -->
+        <article class="room-detail-card reveal">
+            <img src="images/Royal Classic Suite/ROYAL CLASSIC SUITE ROOM 2.jpg" class="room-detail-img" alt="Royal Classic Suite">
+            <div class="room-detail-content">
+                <div class="room-type">Premium Suite</div>
+                <h2>Royal Classic Suite</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦200,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=royal-classic'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- ROYAL SUITE -->
+        <article class="room-detail-card reveal">
+            <img src="images/Royal Suite/R2.jpg" class="room-detail-img" alt="Royal Suite">
+            <div class="room-detail-content">
+                <div class="room-type">Deluxe Suite</div>
+                <h2>Royal Suite</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦150,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=royal'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- MINI SUITE -->
+        <article class="room-detail-card reveal">
+            <img src="images/Mini Suite/Mini3.jpg" class="room-detail-img" alt="Mini Suite">
+            <div class="room-detail-content">
+                <div class="room-type">Junior Suite</div>
+                <h2>Mini Suite</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦100,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=mini'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- PREMIUM ROOM -->
+        <article class="room-detail-card reveal">
+            <img src="images/Premium Room/Pr15.jpg" class="room-detail-img" alt="Premium Room">
+            <div class="room-detail-content">
+                <div class="room-type">Superior Room</div>
+                <h2>Premium Room</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦90,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=premium'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- DELUXE ROOM -->
+        <article class="room-detail-card reveal">
+            <img src="images/Deluxe/De15.jpg" class="room-detail-img" alt="Deluxe Room">
+            <div class="room-detail-content">
+                <div class="room-type">Classic Room</div>
+                <h2>Deluxe Room</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦80,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=deluxe'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- STANDARD ROOM -->
+        <article class="room-detail-card reveal">
+            <img src="images/Standard/Std12.jpg" class="room-detail-img" alt="Standard Room">
+            <div class="room-detail-content">
+                <div class="room-type">Economy Room</div>
+                <h2>Standard Room</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦70,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=standard'">Book Now</a>
+            </div>
+        </article>
+
+        <!-- STUDIO ROOM -->
+        <article class="room-detail-card reveal">
+            <img src="images/Studio Room/stua1.jpg" class="room-detail-img" alt="Studio Room">
+            <div class="room-detail-content">
+                <div class="room-type">Studio</div>
+                <h2>Studio Room</h2>
+                <div class="room-price">
+                    <span class="room-price-value">₦30,000</span>
+                    <span>/ Night</span>
+                </div>
+                <a href="#" class="room-detail-btn" onclick="event.preventDefault(); window.location.href='index.html?reserve=studio'">Book Now</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <span class="footer-logo">
+                <img src="images/Logo/Logo.png" alt="Chiben Leisure Hotels">
+            </span>
+            <p class="footer-desc">Serving world-class hospitality across Anambra State, Nigeria. Where business meets
+                leisure in a boutique setting unlike any other.</p>
+            <div class="footer-contact">
+                <a href="tel:+2349015333488">+234 901 533 3488</a>
+                <a href="tel:+2349138242110">+234 913 824 2110</a>
+                <a href="mailto:info@chibenleisurehotels.com">info@chibenleisurehotels.com</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Accommodations</a></li>
+                <li><a href="#">Conferencing & Banqueting</a></li>
+                <li><a href="#">Leisure</a></li>
+                <li><a href="#">Eat & Drink</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Discover</h4>
+            <ul class="footer-links">
+                <li><a href="#">Upcoming Events</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Virtual Tour</a></li>
+                <li><a href="#">Chiben Loyalty</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <ul class="footer-links">
+                <li><a href="#">No. 41 Regina Caeli Road</a></li>
+                <li><a href="#">Off Enugu-Onitsha Expressway</a></li>
+                <li><a href="#">Awka, Anambra State</a></li>
+                <li><a href="#">Nigeria</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <p>© 2025 Chiben Leisure Hotels Limited. All Rights Reserved.</p>
+        <p>AWKA · NIGERIA</p>
+    </div>
+
+    <script>
+        // Scroll reveal logic
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
