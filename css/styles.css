@@ -16,6 +16,23 @@
             --bg-alt: #f8f5f0; /* cream */
             --bg-dark: #0a0f1a; /* keep navy for accents/footer if needed */
             
+            /* Navy variants (used in specific components) */
+            --navy: #0d1b31;
+            --navy-mid: #0a1425;
+            --navy-deep: #060e1a;
+            
+            /* Silver/Gray variants (used in accents) */
+            --silver: #a8b8cc;
+            --silver-light: #d1d9e2;
+            --silver-bright: #eef2f6;
+
+            /* Cream variants */
+            --cream: #f4ece1;
+            --cream-muted: #a89f94;
+
+            /* Other accents */
+            --brown: #745b4b;
+            
             --white: #ffffff;
             --black: #1a1a1a;
             
@@ -188,7 +205,7 @@
             display: block;
             width: 28px;
             height: 2px;
-            background: var(--white);
+            background: var(--black); /* Changed from white to black for visibility */
             transition: transform 0.4s var(--ease-out-expo), opacity 0.3s;
         }
 
